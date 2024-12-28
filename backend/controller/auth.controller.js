@@ -44,7 +44,6 @@ async function login (email, password) {
     if (!isPasswordMatched) {
       throw new Error('Invalid credentials')
     }
-
     return user
   } catch (error) {
     throw error

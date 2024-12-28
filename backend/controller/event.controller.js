@@ -13,13 +13,11 @@ const createEvent = async (eventData, organizerId) => {
       startTime,
       endTime,
       mode,
-      organizer,
       genre,
       eventCategory,
       totalAttendees,
       attendeeDetails,
       totalTickets,
-      availableTickets,
       isFree
     } = eventData
 
@@ -65,6 +63,7 @@ const getAllEvents = async () => {
       updatedData,
       { new: true }
     )
+    
     if (!updatedEvent) {
       return new Error('Event not found')
     }

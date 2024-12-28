@@ -89,6 +89,7 @@ eventRouter.put('/:eventId', requireAuth, async (req, res) => {
     const eventId = req.params.eventId
     const updatedData = req.body
     const updatedEvent = await updateEvent(eventId, organizerId, updatedData)
+    console.log(updatedEvent);
     return res
       .status(200)
       .json({ message: 'Event updated successfully', event: updatedEvent })
