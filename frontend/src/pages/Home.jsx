@@ -1,7 +1,9 @@
-export const Home=()=>{
-    return (
-        <>
-        <h2>Home</h2>
-        </>
-    )
-}
+import { HeroSection } from "../components/HeroSection";
+
+export const Home = () => {
+  return (
+    <>
+      <HeroSection />
+    </>
+  );
+};
