@@ -28,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         )
         setCurrentUser(user)
         setToken(token)
-        toast.success('Successfully signed in!')
+        toast.success('Successfully log in!')
         navigate(location.state?.from?.pathname || '/')
       }
     } catch (err) {
