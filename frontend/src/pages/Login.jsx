@@ -43,6 +43,7 @@ export const Login = () => {
             <input
               type="email"
               id="email"
+              required
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-mauve"
               placeholder="example@email.com"
               value={loginDetails.email}
@@ -61,6 +62,7 @@ export const Login = () => {
             <input
               type={showPassword ? "text" : "password"}
               id="password"
+              required
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-mauve"
               placeholder="password"
               value={loginDetails.password}

@@ -1,7 +1,12 @@
+import { Navbar } from "../components/Navbar";
+import { Footer } from "../components/Footer";
+
 export const CreateEvent = () => {
   return (
     <>
-      <h2>Create event</h2>
+     <Navbar/>
+     <h1>Create event</h1>
+     <Footer/>
     </>
   );
 };
