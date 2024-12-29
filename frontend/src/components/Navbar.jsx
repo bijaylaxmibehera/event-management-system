@@ -25,25 +25,34 @@ export const Navbar = () => {
         {/* Navigation Links */}
         <div className="text-tekhelet flex space-x-6 font-medium text-lg">
           {currentUser && (
-            <NavLink
-              to={`/${currentUser.name}/my-tickets`}
-              className="relative group"
-            >
-              my tickets
-              <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
-            </NavLink>
+            <>
+              <NavLink
+                to={`/${currentUser.name}/create-event`}
+                className="relative group"
+              >
+                create event
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
+              </NavLink>
+              <NavLink
+                to={`/${currentUser.name}/my-tickets`}
+                className="relative group"
+              >
+                my tickets
+                <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
+              </NavLink>
+            </>
           )}
-          <NavLink to="/register" className="relative group">
+          <NavLink
+            to="/register"
+            className={`relative group ${currentUser && "hidden"}`}
+          >
             register
             <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
           </NavLink>
 
           {/* Conditional Rendering for Login/Logout */}
           {currentUser ? (
-            <button
-              onClick={logoutHandler}
-              className="relative group"
-            >
+            <button onClick={logoutHandler} className="relative group">
               logout
               <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
             </button>
