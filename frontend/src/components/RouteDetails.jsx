@@ -1,4 +1,5 @@
 import { CreateEvent } from "../pages/CreateEvent";
+import { EventList } from "../pages/EventList";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
@@ -9,6 +10,7 @@ export const RouteDetails = () => {
     <>
       <Routes>
         <Route path="/" element={<Home/>} />
+        <Route path="/events" element={<EventList/>} />
         <Route path="/register" element={<Register/>} />
         <Route path="/login" element={<Login/>} />
         <Route path="/:name/create-event" element={<CreateEvent/>} />

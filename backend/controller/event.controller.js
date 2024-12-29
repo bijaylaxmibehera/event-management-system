@@ -47,7 +47,7 @@ const createEvent = async (eventData, organizerId) => {
 }
 const getAllEvents = async () => {
   try {
-    const events = await Event.find({})
+    const events = await Event.find()
     if (!events || events.length === 0) {
       return new Error('No  events  found')
     }

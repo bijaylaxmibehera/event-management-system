@@ -1,6 +1,6 @@
 import React, { useState,useContext } from "react";
 import { Link } from "react-router";
-import {AuthContext} from "../index"
+import {AuthContext} from "../"
 
 export const Login = () => {
   const {loginHandler}=useContext(AuthContext);

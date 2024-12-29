@@ -1,4 +1,6 @@
 const express = require('express')
+const multer = require('multer');
+const path = require('path');
 const {
   createEvent,
   getAllEvents,
@@ -12,11 +14,44 @@ const User = require('../models/user.model')
 
 const eventRouter = express.Router()
 
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/'); 
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+const upload = multer({ storage });
+
+// Route to fetch all events
+eventRouter.get('/', async (req, res) => {
+  try {
+    const events = await getAllEvents()
+    return res
+      .status(200)
+      .json({ message: 'Fetch all events successfully', events:events })
+  } catch (error) {
+    console.error('Error fetching events:', error.message)
+    return res
+      .status(500)
+      .json({ message: 'Internal server error', error: error.message })
+  }
+})
+
 // Route to create a new event
-eventRouter.post('/', requireAuth, async (req, res) => {
+eventRouter.post('/', requireAuth,upload.single('image'), async (req, res) => {
   try {
     const eventData = req.body
     const organizerId = req.user.id
+    if (req.file) {
+      eventData.coverImageURL = `/uploads/${req.file.filename}`;
+    }
+
+    if (req.body.coverImageURL) {
+      eventData.coverImageURL = req.body.coverImageURL;
+    }
     const savedEvent = await createEvent(eventData, organizerId)
 
     await User.findByIdAndUpdate(organizerId, {
@@ -34,20 +69,7 @@ eventRouter.post('/', requireAuth, async (req, res) => {
   }
 })
 
-// Route to fetch all events
-eventRouter.get('/', async (req, res) => {
-  try {
-    const events = await getAllEvents()
-    return res
-      .status(200)
-      .json({ message: 'Fetch all events successfully', events })
-  } catch (error) {
-    console.error('Error fetching events:', error.message)
-    return res
-      .status(500)
-      .json({ message: 'Internal server error', error: error.message })
-  }
-})
+
 // fetch events created by user
 eventRouter.get('/my-events', requireAuth, async (req, res) => {
   try {

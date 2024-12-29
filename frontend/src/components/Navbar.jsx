@@ -6,8 +6,8 @@ import { AuthContext } from "../";
 export const Navbar = () => {
   const { currentUser, logoutHandler } = useContext(AuthContext);
   return (
-    <nav className="bg-pink-100 p-4">
-      <div className="w-[70%] mx-auto flex items-center justify-between">
+    <nav className="bg-pink-100 p-4 sticky top-0 z-10">
+      <div className="w-[90%] mx-auto flex items-center justify-between">
         {/* Logo Section */}
         <div className="text-tekhelet font-bold text-2xl">
           <NavLink to="/" className="flex items-center text-2xl">
@@ -23,7 +23,12 @@ export const Navbar = () => {
         <SearchBox />
 
         {/* Navigation Links */}
+
         <div className="text-tekhelet flex space-x-6 font-medium text-lg">
+          <NavLink to="/events" className="relative group">
+            find events
+            <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
+          </NavLink>
           {currentUser && (
             <>
               <NavLink
@@ -42,6 +47,7 @@ export const Navbar = () => {
               </NavLink>
             </>
           )}
+
           <NavLink
             to="/register"
             className={`relative group ${currentUser && "hidden"}`}
