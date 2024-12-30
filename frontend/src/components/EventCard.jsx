@@ -1,7 +1,10 @@
 import React from "react";
+import { useNavigate } from "react-router";
 
 export const EventCard = ({ event }) => {
+  const navigate=useNavigate();
   const {
+    _id,
     title,
     coverImageURL,
     location,
@@ -20,7 +23,7 @@ export const EventCard = ({ event }) => {
   const year = dateObj.getFullYear();
 
   return (
-    <div className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-white transform transition-all hover:scale-105 cursor-pointer">
+    <div className="max-w-xs rounded-lg overflow-hidden shadow-lg bg-white transform transition-all hover:scale-105 cursor-pointer" onClick={()=>navigate(`/event-details/${_id}`)}>
       <div className="h-32 w-full overflow-hidden">
         <img
           src={coverImageURL}

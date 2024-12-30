@@ -18,6 +18,7 @@ export const EventProvider = ({ children }) => {
   const [events, setEvents] = useState([])
   const [userEvents, setUserEvents] = useState([])
   const [selectedEvent, setSelectedEvent] = useState(null)
+  const [categories, setCategories] = useState([]);
 
   const navigate = useNavigate()
 
@@ -25,6 +26,10 @@ export const EventProvider = ({ children }) => {
     try {
       const data = await getAllEventsService()
       setEvents(data)
+      const uniqueCategories = [
+        ...new Set(data.map((event) => event.eventCategory)),
+      ];
+      setCategories(uniqueCategories);
     } catch (error) {
       toast.error('Error fetching all events')
       console.error('Error fetching all events:', error)
@@ -41,10 +46,11 @@ export const EventProvider = ({ children }) => {
     }
   }
 
-  const fetchEventById = async eventId => {
+  const fetchEventById = async (eventId) => {
     try {
       const data = await getEventByIdService(eventId)
       setSelectedEvent(data)
+
     } catch (error) {
       toast.error('Error fetching event details')
       console.error('Error fetching event:', error)
@@ -96,6 +102,7 @@ export const EventProvider = ({ children }) => {
         events,
         userEvents,
         selectedEvent,
+        categories,
         fetchAllEvents,
         fetchUserEvents,
         fetchEventById,

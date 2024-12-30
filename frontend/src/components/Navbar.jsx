@@ -39,7 +39,7 @@ export const Navbar = () => {
                 <span className="absolute bottom-[-6px] left-0 w-0 h-[2px] bg-tekhelet transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
               <NavLink
-                to={`/${currentUser.name}/my-tickets`}
+               to="/"
                 className="relative group"
               >
                 my tickets

@@ -3,7 +3,7 @@ import { Navbar } from "../components/Navbar";
 import { Footer } from "../components/Footer";
 import { EventContext, AuthContext } from "../";
 
-export const CreateEvent = () => {
+const CreateEvent = () => {
   const { handleCreateEvent } = useContext(EventContext);
   const { token } = useContext(AuthContext);
   const [formData, setFormData] = useState({
@@ -310,3 +310,5 @@ export const CreateEvent = () => {
     </>
   );
 };
+
+export default CreateEvent;

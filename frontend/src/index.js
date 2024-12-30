@@ -4,11 +4,12 @@ import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 import { BrowserRouter as Router } from 'react-router'
-import { ToastContainer} from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { AuthProvider, AuthContext } from './context/AuthContext'
 import { EventContext, EventProvider } from './context/EventContext'
+import { FilterContext, FilterProvider } from './context/FilterContext'
 
-export { AuthContext, EventContext }
+export { AuthContext, EventContext, FilterContext }
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
@@ -16,7 +17,9 @@ root.render(
     <Router>
       <EventProvider>
         <AuthProvider>
-          <App />
+          <FilterProvider>
+            <App />
+          </FilterProvider>
         </AuthProvider>
       </EventProvider>
     </Router>

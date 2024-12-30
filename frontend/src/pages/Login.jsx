@@ -2,7 +2,7 @@ import React, { useState,useContext } from "react";
 import { Link } from "react-router";
 import {AuthContext} from "../"
 
-export const Login = () => {
+const Login = () => {
   const {loginHandler}=useContext(AuthContext);
   const  [loginDetails,setLoginDetails]=useState({email:"",password:""})
   const [showPassword, setShowPassword] = useState(false);
@@ -118,3 +118,6 @@ export const Login = () => {
     </div>
   );
 };
+
+
+export default Login;
